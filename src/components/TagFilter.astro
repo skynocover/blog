@@ -1,0 +1,64 @@
+---
+---
+<div class="flex gap-2 mb-8" id="tag-filter">
+  <button
+    class="tag-btn active px-4 py-1.5 rounded-full text-sm font-medium transition-colors"
+    data-tag="all"
+  >
+    全部
+  </button>
+  <button
+    class="tag-btn px-4 py-1.5 rounded-full text-sm font-medium transition-colors"
+    data-tag="深度分析"
+  >
+    深度分析
+  </button>
+  <button
+    class="tag-btn px-4 py-1.5 rounded-full text-sm font-medium transition-colors"
+    data-tag="本週科技"
+  >
+    本週科技
+  </button>
+</div>
+
+<style>
+  .tag-btn {
+    background-color: transparent;
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    border: 1px solid var(--color-border);
+  }
+  .tag-btn:hover {
+    color: var(--color-text);
+    border-color: var(--color-text-secondary);
+  }
+  .tag-btn.active {
+    background-color: var(--color-accent);
+    color: var(--color-bg);
+    border-color: var(--color-accent);
+  }
+</style>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    const buttons = document.querySelectorAll<HTMLButtonElement>('.tag-btn');
+    const articles = document.querySelectorAll<HTMLElement>('[data-post-tag]');
+
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const tag = btn.dataset.tag;
+
+        buttons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        articles.forEach(article => {
+          if (tag === 'all' || article.dataset.postTag === tag) {
+            article.style.display = '';
+          } else {
+            article.style.display = 'none';
+          }
+        });
+      });
+    });
+  });
+</script>

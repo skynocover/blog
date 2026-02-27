@@ -1,0 +1,19 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import FeaturedPosts from '../components/FeaturedPosts.astro';
+import ArticleList from '../components/ArticleList.astro';
+import { getCollection } from 'astro:content';
+
+const allPosts = (await getCollection('posts')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+
+const featuredPosts = allPosts.filter((post) => post.data.featured);
+---
+
+<BaseLayout title="Eric Wu — 科技產業分析">
+  <Hero />
+  <FeaturedPosts posts={featuredPosts} />
+  <ArticleList posts={allPosts} />
+</BaseLayout>

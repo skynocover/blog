@@ -1,0 +1,35 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  prev: CollectionEntry<'posts'> | null;
+  next: CollectionEntry<'posts'> | null;
+}
+
+const { prev, next } = Astro.props;
+---
+
+{(prev || next) && (
+  <nav class="border-t border-border mt-8 pt-8 flex justify-between items-start gap-8">
+    <div class="flex-1 min-w-0">
+      {prev && (
+        <a href={`/posts/${prev.id.replace(/\.md$/, '')}`} class="group block">
+          <span class="text-sm text-text-secondary">← 上一篇</span>
+          <p class="text-sm font-medium mt-1 group-hover:text-accent transition-colors truncate">
+            {prev.data.title}
+          </p>
+        </a>
+      )}
+    </div>
+    <div class="flex-1 min-w-0 text-right">
+      {next && (
+        <a href={`/posts/${next.id.replace(/\.md$/, '')}`} class="group block">
+          <span class="text-sm text-text-secondary">下一篇 →</span>
+          <p class="text-sm font-medium mt-1 group-hover:text-accent transition-colors truncate">
+            {next.data.title}
+          </p>
+        </a>
+      )}
+    </div>
+  </nav>
+)}

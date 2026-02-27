@@ -1,0 +1,48 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ArticleCTA from '../../components/ArticleCTA.astro';
+import PostNav from '../../components/PostNav.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = (await getCollection('posts')).sort(
+    (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+  );
+
+  return posts.map((post, index) => ({
+    params: { slug: post.id.replace(/\.md$/, '') },
+    props: {
+      post,
+      prev: index < posts.length - 1 ? posts[index + 1] : null,
+      next: index > 0 ? posts[index - 1] : null,
+    },
+  }));
+}
+
+const { post, prev, next } = Astro.props;
+const { Content } = await render(post);
+
+function formatDate(date: Date): string {
+  return `${date.getFullYear()}/${String(date.getMonth() + 1).padStart(2, '0')}/${String(date.getDate()).padStart(2, '0')}`;
+}
+---
+
+<BaseLayout title={`${post.data.title} — Eric Wu`} description={post.data.description} ogType="article">
+  <article class="max-w-[720px] mx-auto px-6 md:px-8">
+    <header class="pt-12 pb-8">
+      <div class="text-sm text-text-secondary mb-4">
+        {post.data.tag} · <time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
+      </div>
+      <h1 class="text-[2rem] font-bold leading-tight">
+        {post.data.title}
+      </h1>
+    </header>
+
+    <div class="prose">
+      <Content />
+    </div>
+
+    <ArticleCTA />
+    <PostNav prev={prev} next={next} />
+  </article>
+</BaseLayout>

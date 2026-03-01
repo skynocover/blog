@@ -1,0 +1,63 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const projects = [
+  {
+    name: 'aKraft',
+    description: '可快速建立討論版的 SaaS 服務，讓社群經營者輕鬆打造自己的討論空間。',
+    tags: ['SaaS', '討論版'],
+    links: {
+      site: 'https://akraft.dev',
+    },
+  },
+  {
+    name: 'LLM Arena',
+    description: '大型語言模型能力比較平台，讓使用者直觀地比較不同 LLM 的表現。',
+    tags: ['AI', 'LLM'],
+    links: {
+      site: 'https://llm-arena.ericwu.co/',
+    },
+  },
+];
+---
+
+<BaseLayout title="Side Projects — Eric Wu" description="Eric Wu 的 Side Projects">
+  <section class="max-w-[720px] mx-auto px-6 md:px-8 py-16 md:py-20">
+    <h1 class="text-[2rem] font-bold mb-3">Side Projects</h1>
+    <p class="text-text-secondary mb-12">工作之餘打造的產品與工具</p>
+
+    <div class="space-y-6">
+      {projects.map((project) => (
+        <a
+          href={project.links.site}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="block bg-bg-subtle rounded-lg p-6 hover:shadow-md transition-shadow group"
+        >
+          <div class="flex items-start justify-between gap-4">
+            <div>
+              <h2 class="text-xl font-semibold group-hover:text-accent transition-colors">
+                {project.name}
+              </h2>
+              <p class="text-text-secondary mt-2 text-sm leading-relaxed">
+                {project.description}
+              </p>
+              <div class="flex flex-wrap gap-2 mt-3">
+                {project.tags.map((tag) => (
+                  <span class="text-xs px-2.5 py-1 rounded-full bg-white border border-border text-text-secondary">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-text-secondary shrink-0 mt-1 group-hover:text-accent transition-colors">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+              <polyline points="15 3 21 3 21 9" />
+              <line x1="10" y1="14" x2="21" y2="3" />
+            </svg>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

@@ -15,9 +15,9 @@
   </button>
   <button
     class="tag-btn px-4 py-1.5 rounded-full text-sm font-medium transition-colors"
-    data-tag="本週科技"
+    data-tag="新聞精選"
   >
-    本週科技
+    新聞精選
   </button>
 </div>
 
@@ -40,7 +40,7 @@
 </style>
 
 <script>
-  document.addEventListener('astro:page-load', () => {
+  function initTagFilter() {
     const buttons = document.querySelectorAll<HTMLButtonElement>('.tag-btn');
     const articles = document.querySelectorAll<HTMLElement>('[data-post-tag]');
 
@@ -60,5 +60,11 @@
         });
       });
     });
-  });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initTagFilter);
+  } else {
+    initTagFilter();
+  }
 </script>

@@ -1,7 +1,7 @@
 ---
 title: "AI 有了一間自己的商店，卻引發了 AI 的身份認同危機"
 date: 2025-01-07
-tag: "深度分析"
+tag: "科技觀察"
 description: "Anthropic 與 Andon Labs 合作讓 Claude 經營一家自動化商店，結果引發了意想不到的問題"
 ---
 

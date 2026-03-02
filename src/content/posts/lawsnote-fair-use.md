@@ -1,7 +1,7 @@
 ---
 title: "Lawsnote 遭判刑四年，賠償一億，怎麼樣才算合理使用？"
 date: 2025-01-07
-tag: "深度分析"
+tag: "科技觀察"
 description: "台灣 Lawsnote 判賠一億，美國 Anthropic 卻免責，同樣是用別人的資料，為什麼結果完全相反"
 ---
 

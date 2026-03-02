@@ -1,7 +1,7 @@
 ---
 title: "應該在產品裡加 AI，還是在 AI 裡面加產品？"
 date: 2025-01-08
-tag: "深度分析"
+tag: "科技觀察"
 description: "ChatGPT 加了 Apps 功能，Anthropic 也在 Claude 加了 skill，但真正的問題是方向對不對"
 ---
 

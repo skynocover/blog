@@ -1,7 +1,7 @@
 ---
 title: "聊一下最近很紅的 Vinext"
 date: 2025-02-26
-tag: "深度分析"
+tag: "科技觀察"
 description: "Cloudflare 工程師花一週用 AI 重寫了 Next.js，這對前端生態意味著什麼"
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "OpenAI 究竟有沒有護城河？"
 date: 2025-01-07
-tag: "深度分析"
+tag: "科技觀察"
 description: "OpenAI 需要巨額資金，ChatGPT Pro 虧錢，用七大市場力量來檢視他們的護城河到底在哪"
 featured: true
 ---

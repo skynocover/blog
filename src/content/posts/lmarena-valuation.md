@@ -1,7 +1,7 @@
 ---
 title: "LMArena 估值翻 3 倍，但人類真的能評價 AI 嗎？"
 date: 2025-01-10
-tag: "深度分析"
+tag: "科技觀察"
 description: "LMArena 八個月內估值從 6 億翻到 17 億美元，靠的是讓使用者投票決定哪個 AI 比較好"
 ---
 

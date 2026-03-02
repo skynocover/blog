@@ -9,11 +9,7 @@ interface Props {
   ogType?: string;
 }
 
-const {
-  title,
-  description = '科技產業分析・每週更新',
-  ogType = 'website',
-} = Astro.props;
+const { title, description = '科技產業分析・每週更新', ogType = 'website' } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
@@ -30,7 +26,10 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+TC:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+TC:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
 
     <!-- SEO -->
     <title>{title}</title>

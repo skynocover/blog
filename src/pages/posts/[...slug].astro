@@ -6,7 +6,7 @@ import { getCollection, render } from 'astro:content';
 
 export async function getStaticPaths() {
   const posts = (await getCollection('posts')).sort(
-    (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+    (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
   );
 
   return posts.map((post, index) => ({
@@ -27,11 +27,17 @@ function formatDate(date: Date): string {
 }
 ---
 
-<BaseLayout title={`${post.data.title} — Eric Wu`} description={post.data.description} ogType="article">
-  <article class="max-w-[720px] mx-auto px-6 md:px-8">
+<BaseLayout
+  title={`${post.data.title} — Eric Wu`}
+  description={post.data.description}
+  ogType="article"
+>
+  <article class="max-w-180 mx-auto px-6 md:px-8">
     <header class="pt-12 pb-8">
       <div class="text-sm text-text-secondary mb-4">
-        {post.data.tag} · <time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
+        {post.data.tag} · <time datetime={post.data.date.toISOString()}
+          >{formatDate(post.data.date)}</time
+        >
       </div>
       <h1 class="text-[2rem] font-bold leading-tight">
         {post.data.title}

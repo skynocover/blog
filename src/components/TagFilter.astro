@@ -1,5 +1,7 @@
 ---
+
 ---
+
 <div class="flex gap-2 mb-8" id="tag-filter">
   <button
     class="tag-btn active px-4 py-1.5 rounded-full text-sm font-medium transition-colors"
@@ -50,14 +52,14 @@
     const buttons = document.querySelectorAll<HTMLButtonElement>('.tag-btn');
     const articles = document.querySelectorAll<HTMLElement>('[data-post-tag]');
 
-    buttons.forEach(btn => {
+    buttons.forEach((btn) => {
       btn.addEventListener('click', () => {
         const tag = btn.dataset.tag;
 
-        buttons.forEach(b => b.classList.remove('active'));
+        buttons.forEach((b) => b.classList.remove('active'));
         btn.classList.add('active');
 
-        articles.forEach(article => {
+        articles.forEach((article) => {
           if (tag === 'all' || article.dataset.postTag === tag) {
             article.style.display = '';
           } else {

@@ -4,7 +4,7 @@
 
 <div class="flex gap-2 mb-8" id="tag-filter">
   <button
-    class="tag-btn active px-4 py-1.5 rounded-full text-sm font-medium transition-colors"
+    class="tag-btn px-4 py-1.5 rounded-full text-sm font-medium transition-colors"
     data-tag="all"
   >
     全部
@@ -48,24 +48,27 @@
 </style>
 
 <script>
+  function filterByTag(tag: string, buttons: NodeListOf<HTMLButtonElement>, articles: NodeListOf<HTMLElement>) {
+    buttons.forEach((b) => b.classList.toggle('active', b.dataset.tag === tag));
+
+    articles.forEach((article) => {
+      if (tag === 'all' || article.dataset.postTag === tag) {
+        article.style.display = '';
+      } else {
+        article.style.display = 'none';
+      }
+    });
+  }
+
   function initTagFilter() {
     const buttons = document.querySelectorAll<HTMLButtonElement>('.tag-btn');
     const articles = document.querySelectorAll<HTMLElement>('[data-post-tag]');
 
+    filterByTag('科技觀察', buttons, articles);
+
     buttons.forEach((btn) => {
       btn.addEventListener('click', () => {
-        const tag = btn.dataset.tag;
-
-        buttons.forEach((b) => b.classList.remove('active'));
-        btn.classList.add('active');
-
-        articles.forEach((article) => {
-          if (tag === 'all' || article.dataset.postTag === tag) {
-            article.style.display = '';
-          } else {
-            article.style.display = 'none';
-          }
-        });
+        filterByTag(btn.dataset.tag!, buttons, articles);
       });
     });
   }

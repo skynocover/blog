@@ -48,6 +48,8 @@
 </style>
 
 <script>
+  let cleanupTagFilter: (() => void) | null = null;
+
   function filterByTag(tag: string, buttons: NodeListOf<HTMLButtonElement>, articles: NodeListOf<HTMLElement>) {
     buttons.forEach((b) => b.classList.toggle('active', b.dataset.tag === tag));
 
@@ -61,21 +63,24 @@
   }
 
   function initTagFilter() {
+    cleanupTagFilter?.();
+    cleanupTagFilter = null;
+
     const buttons = document.querySelectorAll<HTMLButtonElement>('.tag-btn');
     const articles = document.querySelectorAll<HTMLElement>('[data-post-tag]');
+    if (buttons.length === 0) return;
 
     filterByTag('科技觀察', buttons, articles);
 
+    const controller = new AbortController();
     buttons.forEach((btn) => {
       btn.addEventListener('click', () => {
         filterByTag(btn.dataset.tag!, buttons, articles);
-      });
+      }, { signal: controller.signal });
     });
+
+    cleanupTagFilter = () => controller.abort();
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initTagFilter);
-  } else {
-    initTagFilter();
-  }
+  document.addEventListener('astro:page-load', initTagFilter);
 </script>

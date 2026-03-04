@@ -50,7 +50,11 @@
 <script>
   let cleanupTagFilter: (() => void) | null = null;
 
-  function filterByTag(tag: string, buttons: NodeListOf<HTMLButtonElement>, articles: NodeListOf<HTMLElement>) {
+  function filterByTag(
+    tag: string,
+    buttons: NodeListOf<HTMLButtonElement>,
+    articles: NodeListOf<HTMLElement>,
+  ) {
     buttons.forEach((b) => b.classList.toggle('active', b.dataset.tag === tag));
 
     articles.forEach((article) => {
@@ -74,9 +78,13 @@
 
     const controller = new AbortController();
     buttons.forEach((btn) => {
-      btn.addEventListener('click', () => {
-        filterByTag(btn.dataset.tag!, buttons, articles);
-      }, { signal: controller.signal });
+      btn.addEventListener(
+        'click',
+        () => {
+          filterByTag(btn.dataset.tag!, buttons, articles);
+        },
+        { signal: controller.signal },
+      );
     });
 
     cleanupTagFilter = () => controller.abort();

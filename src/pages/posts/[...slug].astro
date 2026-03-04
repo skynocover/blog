@@ -55,29 +55,33 @@ const showToc = tocHeadings.length >= 2;
       <PostNav prev={prev} next={next} />
     </article>
 
-    {showToc && (
-      <aside class="hidden xl:block absolute top-0 bottom-0 left-full ml-8 w-48">
-        <nav id="toc-nav" class="sticky top-24 pt-32">
-          <h4 class="text-xs font-semibold text-text-secondary uppercase tracking-wide mb-3">目錄</h4>
-          <ul class="space-y-2 border-l border-border">
-            {tocHeadings.map((heading) => (
-              <li>
-                <a
-                  href={`#${heading.slug}`}
-                  class:list={[
-                    'toc-link block text-sm leading-snug py-0.5 border-l-2 border-transparent -ml-px transition-colors text-text-secondary hover:text-accent',
-                    heading.depth === 3 ? 'pl-6' : 'pl-3',
-                  ]}
-                  data-slug={heading.slug}
-                >
-                  {heading.text}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </nav>
-      </aside>
-    )}
+    {
+      showToc && (
+        <aside class="hidden xl:block absolute top-0 bottom-0 left-full ml-8 w-48">
+          <nav id="toc-nav" class="sticky top-24 pt-32">
+            <h4 class="text-xs font-semibold text-text-secondary uppercase tracking-wide mb-3">
+              目錄
+            </h4>
+            <ul class="space-y-2 border-l border-border">
+              {tocHeadings.map((heading) => (
+                <li>
+                  <a
+                    href={`#${heading.slug}`}
+                    class:list={[
+                      'toc-link block text-sm leading-snug py-0.5 border-l-2 border-transparent -ml-px transition-colors text-text-secondary hover:text-accent',
+                      heading.depth === 3 ? 'pl-6' : 'pl-3',
+                    ]}
+                    data-slug={heading.slug}
+                  >
+                    {heading.text}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </aside>
+      )
+    }
   </div>
   <script>
     let cleanupProgressBar: (() => void) | null = null;
@@ -96,9 +100,12 @@ const showToc = tocHeadings.length >= 2;
         const docHeight = document.documentElement.scrollHeight - window.innerHeight;
         const progress = docHeight > 0 ? Math.min((scrollTop / docHeight) * 100, 100) : 0;
         bar.style.width = `${progress}%`;
-      }
+      };
 
-      window.addEventListener('scroll', updateProgress, { passive: true, signal: controller.signal });
+      window.addEventListener('scroll', updateProgress, {
+        passive: true,
+        signal: controller.signal,
+      });
       updateProgress();
 
       cleanupProgressBar = () => controller.abort();
@@ -155,11 +162,15 @@ const showToc = tocHeadings.length >= 2;
 
       const controller = new AbortController();
       links.forEach((link) => {
-        link.addEventListener('click', (e) => {
-          e.preventDefault();
-          const target = document.getElementById(link.dataset.slug!);
-          target?.scrollIntoView({ behavior: 'smooth' });
-        }, { signal: controller.signal });
+        link.addEventListener(
+          'click',
+          (e) => {
+            e.preventDefault();
+            const target = document.getElementById(link.dataset.slug!);
+            target?.scrollIntoView({ behavior: 'smooth' });
+          },
+          { signal: controller.signal },
+        );
       });
 
       cleanupToc = () => {

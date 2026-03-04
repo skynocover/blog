@@ -1,25 +1,25 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @theme {
-  --font-sans: "Inter", "Noto Sans TC", system-ui, -apple-system, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --font-sans: 'Inter', 'Noto Sans TC', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
 
-  --color-bg: #FFFFFF;
-  --color-text: #1A1A1A;
-  --color-text-secondary: #6B7280;
-  --color-accent: #2563EB;
-  --color-accent-hover: #1D4ED8;
-  --color-border: #E5E7EB;
-  --color-bg-subtle: #F9FAFB;
+  --color-bg: #faf9f7;
+  --color-text: #1a1a1a;
+  --color-text-secondary: #6b7280;
+  --color-accent: #1a56db;
+  --color-accent-hover: #1648b8;
+  --color-border: #e5e4e0;
+  --color-bg-subtle: #f3f2ee;
 }
 
 /* Google Fonts */
 @layer base {
   @font-face {
-    font-family: "Inter";
+    font-family: 'Inter';
     font-style: normal;
     font-display: swap;
-    src: url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap");
+    src: url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
   }
 }
 

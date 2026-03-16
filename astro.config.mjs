@@ -4,7 +4,7 @@ import sitemap from '@astrojs/sitemap';
 import remarkBreaks from 'remark-breaks';
 
 export default defineConfig({
-  site: 'https://ericwu.blog',
+  site: 'https://ericwu.co',
   output: 'static',
   vite: {
     plugins: [tailwindcss()],

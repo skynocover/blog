@@ -12,7 +12,10 @@ const allPosts = (await getCollection('posts')).sort(
 const featuredPosts = allPosts.filter((post) => post.data.featured);
 ---
 
-<BaseLayout title="Eric Wu — 科技產業分析">
+<BaseLayout
+  title="Eric Wu — 科技產業分析"
+  description="Eric Wu（吳有擇）的科技產業分析 blog，解讀 AI、新創與科技巨頭的商業策略，每週更新"
+>
   <Hero />
   <FeaturedPosts posts={featuredPosts} />
   <ArticleList posts={allPosts} />

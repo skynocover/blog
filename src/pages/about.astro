@@ -2,17 +2,65 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<BaseLayout title="關於 — Eric Wu" description="關於 Eric Wu 和這個 blog">
+<BaseLayout
+  title="關於 — Eric Wu"
+  description="零創科技執行長吳有擇（Eric Wu），從機械工程到軟體創業，專注 AI、新創與科技產業分析"
+>
   <div class="max-w-180 mx-auto px-6 md:px-8 py-12">
     <h1 class="text-[2rem] font-bold mb-8">關於我</h1>
 
     <div class="prose">
-      <p>我是 Eric Wu，寫科技產業分析的。</p>
       <p>
-        這個 blog 主要有兩類內容：<strong>深度分析</strong
-        >是針對特定公司、產品或趨勢的長文分析；<strong>本週科技</strong>是每週的科技新聞整理和評論。
+        我是吳有擇（Eric
+        Wu），零創科技的執行長。從機械工程出身，一路走進軟體開發與數位轉型，現在專注在 AI
+        應用與科技產業分析。
       </p>
-      <p>如果你對這些主題有興趣，可以訂閱我的電子報。</p>
+      <p>
+        這個 blog 記錄我對科技產業的觀察，主要有三類內容：<strong>科技觀察</strong>是針對
+        AI、新創與科技巨頭的深度分析；<strong>技術筆記</strong>是實作過程中的技術心得；<strong
+          >隨筆</strong
+        >則是工作與生活的雜想。
+      </p>
+    </div>
+
+    <div class="mt-12">
+      <h2 class="text-lg font-semibold mb-4">經歷</h2>
+      <ul class="space-y-3 text-text-secondary">
+        <li>
+          <span class="text-text font-medium">零創科技</span> — 執行長
+        </li>
+        <li>
+          <span class="text-text font-medium">銀泰科技</span> — 專案主工程師。帶領 5 位工程師，完成全台第一台
+          CBN 螺帽研磨機
+        </li>
+        <li>
+          <span class="text-text font-medium">廣達國際機械</span> — 數位轉型顧問（M365、ERP、敏捷開發導入）
+        </li>
+        <li>
+          <span class="text-text font-medium">必創科技</span> — 後端工程師
+        </li>
+      </ul>
+    </div>
+
+    <div class="mt-12">
+      <h2 class="text-lg font-semibold mb-4">認證與賽事</h2>
+      <div class="flex flex-wrap gap-2">
+        {
+          [
+            'Microsoft Security',
+            'Microsoft Azure',
+            'Google Cloud',
+            'Scrum Master',
+            'TSWC 台灣新創世界盃 Top50',
+            'TAcc+ Create 2025',
+            '台灣 AI 新創地圖 2025',
+          ].map((item) => (
+            <span class="text-sm px-3 py-1 rounded-full bg-bg-subtle border border-border text-text-secondary">
+              {item}
+            </span>
+          ))
+        }
+      </div>
     </div>
 
     <div class="mt-12">

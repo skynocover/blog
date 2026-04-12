@@ -1,5 +1,6 @@
 ---
 import type { CollectionEntry } from 'astro:content';
+import { postUrl } from '../utils/post-url';
 
 interface Props {
   prev: CollectionEntry<'posts'> | null;
@@ -14,7 +15,7 @@ const { prev, next } = Astro.props;
     <nav class="border-t border-border mt-8 pt-8 flex justify-between items-start gap-8">
       <div class="flex-1 min-w-0">
         {prev && (
-          <a href={`/posts/${prev.id.replace(/\.md$/, '')}`} class="group block">
+          <a href={postUrl(prev.id)} class="group block">
             <span class="text-sm text-text-secondary">← 上一篇</span>
             <p class="text-sm font-medium mt-1 group-hover:text-accent transition-colors truncate">
               {prev.data.title}
@@ -24,7 +25,7 @@ const { prev, next } = Astro.props;
       </div>
       <div class="flex-1 min-w-0 text-right">
         {next && (
-          <a href={`/posts/${next.id.replace(/\.md$/, '')}`} class="group block">
+          <a href={postUrl(next.id)} class="group block">
             <span class="text-sm text-text-secondary">下一篇 →</span>
             <p class="text-sm font-medium mt-1 group-hover:text-accent transition-colors truncate">
               {next.data.title}

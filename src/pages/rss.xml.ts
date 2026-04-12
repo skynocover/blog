@@ -1,6 +1,7 @@
 import rss from '@astrojs/rss';
 import { getCollection } from 'astro:content';
 import type { APIContext } from 'astro';
+import { postUrl } from '../utils/post-url';
 
 export async function GET(context: APIContext) {
   const posts = (await getCollection('posts')).sort(
@@ -15,7 +16,7 @@ export async function GET(context: APIContext) {
       title: post.data.title,
       pubDate: post.data.date,
       description: post.data.description,
-      link: `/posts/${post.id.replace(/\.md$/, '')}/`,
+      link: postUrl(post.id),
     })),
   });
 }

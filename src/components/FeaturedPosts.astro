@@ -2,6 +2,7 @@
 import type { CollectionEntry } from 'astro:content';
 import { getReadingTime } from '../utils/reading-time';
 import { formatDate } from '../utils/format-date';
+import { postUrl } from '../utils/post-url';
 
 interface Props {
   posts: CollectionEntry<'posts'>[];
@@ -25,7 +26,7 @@ const { posts } = Astro.props;
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         {posts.slice(0, 2).map((post) => (
           <a
-            href={`/posts/${post.id.replace(/\.md$/, '')}`}
+            href={postUrl(post.id)}
             class="block bg-bg-subtle rounded-lg p-6 hover:shadow-md transition-shadow"
           >
             <span class="text-sm text-text-secondary">{post.data.tag}</span>

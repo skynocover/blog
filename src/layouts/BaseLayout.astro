@@ -68,7 +68,40 @@ const ogImageURL = image
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImageURL} />
 
-    <!-- JSON-LD -->
+    <!-- JSON-LD: site-wide entity graph (Person + WebSite) -->
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        '@context': 'https://schema.org',
+        '@graph': [
+          {
+            '@type': 'Person',
+            '@id': 'https://ericwu.co/#person',
+            name: 'Eric Wu',
+            alternateName: '吳有擇',
+            url: 'https://ericwu.co/',
+            jobTitle: '執行長',
+            worksFor: { '@type': 'Organization', name: '零創科技' },
+            sameAs: [
+              'https://www.threads.com/@oneday0013',
+              'https://github.com/skynocover',
+              'https://eric479694.substack.com/',
+            ],
+          },
+          {
+            '@type': 'WebSite',
+            '@id': 'https://ericwu.co/#website',
+            url: 'https://ericwu.co/',
+            name: 'Eric Wu — 科技產業分析',
+            description: '解讀 AI、新創與科技巨頭的商業策略',
+            inLanguage: 'zh-TW',
+            publisher: { '@id': 'https://ericwu.co/#person' },
+          },
+        ],
+      })}
+    />
+
+    <!-- JSON-LD: per-article Article schema -->
     {
       ogType === 'article' && publishedDate && (
         <script
@@ -81,16 +114,9 @@ const ogImageURL = image
             datePublished: publishedDate.toISOString(),
             url: canonicalURL.href,
             image: ogImageURL,
-            author: {
-              '@type': 'Person',
-              name: 'Eric Wu',
-              url: 'https://ericwu.co',
-            },
-            publisher: {
-              '@type': 'Person',
-              name: 'Eric Wu',
-              url: 'https://ericwu.co',
-            },
+            author: { '@id': 'https://ericwu.co/#person' },
+            publisher: { '@id': 'https://ericwu.co/#person' },
+            isPartOf: { '@id': 'https://ericwu.co/#website' },
           })}
         />
       )

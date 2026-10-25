@@ -16,15 +16,15 @@ Write to: `src/content/posts/` in this project.
 3. For each source file, check if it already exists in destination (compare by reading existing posts' frontmatter `title` field against the source filename/content).
 4. For **new or updated** files:
    - Read the full content of the source file.
-   - Generate frontmatter with these fields (matching the schema in `src/content/config.ts`):
+   - Generate frontmatter with these fields (matching the schema in `src/content.config.ts`):
      - `title`: Clean up the filename or first heading as the title
      - `date`: Use the file's last modified date (YYYY-MM-DD format)
-     - `tag`: Choose between "深度分析" or "本週科技" based on content
+     - `tag`: Choose one of "科技觀察", "技術筆記", "隨筆" based on content
      - `description`: Generate a 1-2 sentence summary of the article in the same tone/language as the content
      - `featured`: Set to `true` only if the article is particularly notable
    - Generate an English `slug` from the title (kebab-case, concise)
    - Strip any existing `# Title` heading from the content (since title is in frontmatter)
-   - Write to `src/content/posts/{slug}.md` with frontmatter + content
+   - Write to `src/content/posts/{folder}/{slug}.md` with frontmatter + content, where folder matches tag: 科技觀察 → `tech`, 技術筆記 → `notes`, 隨筆 → `essays`
 5. Report what was added, updated, or skipped.
 
 ## Important
